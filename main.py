@@ -1,10 +1,20 @@
-with open("data.txt", "r") as file:
-    data = file.read()
+try:
+    with open("data.txt", "r") as file:
+        data = file.read()
 
-word_to_find = input("Enter the word to find:  ")
-replacement_word = input('Enter the replacement word:')
+    word_to_find = input("Enter the word to find:  ")
+    replacement_word = input('Enter the replacement word:')
 
-modified_data = data.replace(word_to_find, replacement_word)
+    modified_data = data.replace(word_to_find, replacement_word)
 
-with open("data.txt", "w") as file:
-    file.write(modified_data)
+    with open("data.txt", "w") as file:
+        file.write(modified_data)
+
+except FileNotFoundError:
+    print("Error: The file was not found.")
+
+except PermissionError:
+    print("Error: Permission denied while accessing the file.")
+
+except OSError as error:
+    print(f"Error: File operation failed: {error}")
